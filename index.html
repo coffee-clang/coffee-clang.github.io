@@ -61,10 +61,25 @@
 
   <h1>Install Cup</h1>
 
+  <h3>Linux</h3>
   <div class="instructions" id="platform-instructions-unix">
     <p>Run the following in your terminal, then follow the onscreen instructions.</p>
     <div class="copy-container">
       <pre class="cup-command">curl -fsSL https://github.com/coffee-clang/cup/releases/download/cup-bootstrap/install.sh | sh</pre>
+      <button id="copy-button-cup" class="copy-button" type="button" title="Copy install command">
+        <div class="copy-icon">
+          <img src="copy-icon.svg" alt="Copy" width="24" height="25">
+        </div>
+        <span id="copy-status-cup" class="copy-button-text" hidden>Copied!</span>
+      </button>
+    </div>
+  </div>
+
+  <h3>Windows</h3>
+  <div class="instructions" id="platform-instructions-unix">
+    <p>Run the following in your terminal, then follow the onscreen instructions.</p>
+    <div class="copy-container">
+      <pre class="cup-command">irm https://github.com/coffee-clang/cup/releases/download/cup-bootstrap/install.ps1 | iex</pre>
       <button id="copy-button-cup" class="copy-button" type="button" title="Copy install command">
         <div class="copy-icon">
           <img src="copy-icon.svg" alt="Copy" width="24" height="25">
@@ -80,11 +95,18 @@
     Need help?<br>
     Please wait: the project is still pre-alpha!
   </p>
-
   <p id="about">
     Coffee is an open-source project.
     &nbsp;&middot;&nbsp;
     <a href="https://github.com/coffee-clang">GitHub</a>
+    inspired by <a href="https://github.com/rust-lang/cargo">Cargo</a>
+  </p>
+  <p id="about">
+    Cup is a <a href="https://coffee-clang.github.io/">Coffee</a> project.
+    &nbsp;&middot;&nbsp;
+    <a href="https://github.com/coffee-clang/cup">GitHub</a>
+    &nbsp;&middot;&nbsp;
+    Inspired by <a href="https://rustup.rs">Rustup</a>
   </p>
 
 </div>
