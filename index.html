@@ -1,35 +1,91 @@
+</div>
+</body>
+</html>
 <!DOCTYPE html>
-<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <link href="/cup.css" rel="stylesheet">
-    <link href="/normalize.css" rel="stylesheet">
-    <title>Coffee-clang</title>
+  <meta charset="utf-8">
+  <title>Cup - The C toolchain installer</title>
+  <meta name="keywords" content="C, C programming language, cup, coffee">
+  <meta name="description" content="The C toolchain installer">
+  <link rel="stylesheet" href="https://coffee-clang.github.io/normalize.css">
+  <link rel="stylesheet" href="https://coffee-clang.github.io/cup.css">
+  <link rel="icon" type="image/svg+xml" href="https://coffee-clang.github.io/logo.svg">
 </head>
+
 <body>
-<div class="nosearch">
+
+<!-- Header with logo - same style as coffee-clang.github.io/recipes -->
 <div class="logo-container">
-<img class="logo" src="logo.svg" alt="Cup of Coffee">
-<div class="tagline">
-<h1>Coffee-clang</h1>
-<p>A modern C toolchain</p>
+  <div class="logo">
+    <img src="https://coffee-clang.github.io/logo.svg" alt="Cup logo" width="120" height="120">
+  </div>
+  <div class="tagline">
+    <h1>Cup</h1>
+    <p>C Package Manager &mdash; Toolchain Installer</p>
+  </div>
 </div>
-</div>
-<div class="menu mainmenu">
-<ul>
-<li><a href="/">Home</a>
-<li><a href="https://github.com/coffee-clang">GitHub</a>
-</ul>
-</div>
-</div>
+
+<!-- Navigation -->
+<nav class="menu mainmenu">
+  <ul>
+    <li><a href="https://coffee-clang.github.io/cup/">Home</a></li>
+    <li><a href="https://github.com/coffee-clang/cup">GitHub</a></li>
+  </ul>
+</nav>
 
 <div class="content">
-<h1>Coffee-clang Projects</h1>
+
+  <h1>Install Cup</h1>
+
+  <div class="instructions" id="platform-instructions-unix">
+    <p>Run the following in your terminal, then follow the onscreen instructions.</p>
+    <div class="copy-container">
+      <pre class="cup-command">curl -fsSL https://github.com/coffee-clang/cup/releases/download/cup-bootstrap/install.sh | sh</pre>
+      <button id="copy-button-unix" class="copy-button" type="button" title="Copy install command">
+        <div class="copy-icon">
+          <svg width="24" height="25" viewBox="0 0 24 25" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 20h2v3c0 1-1 2-2 2H2c-.998 0-2-1-2-2V5c0-.911.755-1.667 1.667-1.667h5A3.323 3.323 0 0110 0a3.323 3.323 0 013.333 3.333h5C19.245 3.333 20 4.09 20 5v8.333h-2V9H2v14h16v-3zM3 7h14c0-.911-.793-1.667-1.75-1.667H13.5c-.957 0-1.75-.755-1.75-1.666C11.75 2.755 10.957 2 10 2s-1.75.755-1.75 1.667c0 .911-.793 1.666-1.75 1.666H4.75C3.793 5.333 3 6.09 3 7z"></path><path d="M4 19h6v2H4zM12 11H4v2h8zM4 17h4v-2H4zM15 15v-3l-4.5 4.5L15 21v-3l8.027-.032L23 15z"></path>
+          </svg>
+        </div>
+        <div id="copy-status-message-unix" class="copy-button-text">Copied!</div>
+      </button>
+    </div>
+  </div>
+
+  <div class="instructions" id="platform-instructions-win32">
+    <p>Run the following in your terminal, then follow the onscreen instructions.</p>
+    <div class="copy-container">
+      <pre class="cup-command">irm https://github.com/coffee-clang/cup/releases/download/cup-bootstrap/install.ps1 | iex</pre>
+      <button id="copy-button-win32" class="copy-button" type="button" title="Copy install command">
+        <div class="copy-icon">
+          <svg width="24" height="25" viewBox="0 0 24 25" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 20h2v3c0 1-1 2-2 2H2c-.998 0-2-1-2-2V5c0-.911.755-1.667 1.667-1.667h5A3.323 3.323 0 0110 0a3.323 3.323 0 013.333 3.333h5C19.245 3.333 20 4.09 20 5v8.333h-2V9H2v14h16v-3zM3 7h14c0-.911-.793-1.667-1.75-1.667H13.5c-.957 0-1.75-.755-1.75-1.666C11.75 2.755 10.957 2 10 2s-1.75.755-1.75 1.667c0 .911-.793 1.666-1.75 1.666H4.75C3.793 5.333 3 6.09 3 7z"></path><path d="M4 19h6v2H4zM12 11H4v2h8zM4 17h4v-2H4zM15 15v-3l-4.5 4.5L15 21v-3l8.027-.032L23 15z"></path>
+          </svg>
+        </div>
+        <div id="copy-status-message-win32" class="copy-button-text">Copied!</div>
+      </button>
+    </div>
+  </div>
+
+  <div class="instructions" id="platform-instructions-win64">
+    <p>Run the following in your terminal, then follow the onscreen instructions.</p>
+    <div class="copy-container">
+      <pre class="cup-command">irm https://github.com/coffee-clang/cup/releases/download/cup-bootstrap/install.ps1 | iex</pre>
+      <button id="copy-button-win64" class="copy-button" type="button" title="Copy install command">
+        <div class="copy-icon">
+          <svg width="24" height="25" viewBox="0 0 24 25" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 20h2v3c0 1-1 2-2 2H2c-.998 0-2-1-2-2V5c0-.911.755-1.667 1.667-1.667h5A3.323 3.323 0 0110 0a3.323 3.323 0 013.333 3.333h5C19.245 3.333 20 4.09 20 5v8.333h-2V9H2v14h16v-3zM3 7h14c0-.911-.793-1.667-1.75-1.667H13.5c-.957 0-1.75-.755-1.75-1.666C11.75 2.755 10.957 2 10 2s-1.75.755-1.75 1.666c0 .911-.793 1.666-1.75 1.666H4.75C3.793 5.333 3 6.09 3 7z"></path><path d="M4 19h6v2H4zM12 11H4v2h8zM4 17h4v-2H4zM15 15v-3l-4.5 4.5L15 21v-3l8.027-.032L23 15z"></path>
+          </svg>
+        </div>
+        <div id="copy-status-message-win64" class="copy-button-text">Copied!</div>
+      </button>
+    </div>
+  </div>
+
+<h2>Coffee Projects</h2>
 <p>Tools and libraries for modern C development.</p>
 
-<h2>Projects</h2>
 
 <ul>
 <li><strong><a href="https://github.com/coffee-clang/cup">cup</a></strong> &mdash; A modern way to manage a C toolchain 
@@ -42,5 +98,21 @@
             (<a href=https://github.com/coffee-clang/coffee-clang.github.io">github repo</a>)</li >
 </ul>
 </div>
+
+  <hr class="xhr">
+
+  <p id="help">
+    Need help?<br>
+    Please wait: the project is still pre-alpha!
+  </p>
+
+  <p id="about">
+    Cup is a <a href="https://coffee-clang.github.io/">Coffee</a> project.
+    &nbsp;&middot;&nbsp;
+    <a href="https://github.com/coffee-clang/cup">GitHub</a>
+    &nbsp;&middot;&nbsp;
+    Inspired by <a href="https://rustup.rs">Rustup</a>
+  </p>
+
 </body>
 </html>
