@@ -1,0 +1,190 @@
+/* brand.css — shared visual identity for coffee-clang projects */
+/* Version 1.0 — Single source of truth for brand styles */
+
+/* === Design Tokens (CSS Custom Properties) === */
+:root {
+  --coffee-bg:       #f5e6d3;
+  --coffee-dark:     #4a2c2a;
+  --coffee-darker:   #2d1810;
+  --coffee-mid:      #6b4438;
+  --coffee-accent:   #d4a574;
+  --coffee-light:    #e8dcc8;
+  --coffee-text:     #2d1810;
+  --coffee-radius:   8px;
+  --coffee-font:     Verdana, sans-serif;
+  --coffee-mono:     "Courier New", monospace;
+}
+
+/* === Global Reset === */
+* {
+  box-sizing: border-box;
+}
+
+/* === Base Body === */
+body {
+  margin-top: 0;
+  font-family: var(--coffee-font);
+  background-color: var(--coffee-bg);
+  color: var(--coffee-text);
+}
+
+@media screen and (max-width: 800px) {
+  body {
+    margin: 2px;
+  }
+}
+
+/* === Links === */
+a {
+  color: var(--coffee-mid);
+}
+a:visited {
+  color: var(--coffee-dark);
+}
+
+/* === Logo + Header === */
+.logo-container {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: var(--coffee-bg);
+}
+
+.logo {
+  float: left;
+  margin: 10px;
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+}
+
+.tagline {
+  float: left;
+  text-align: left;
+  font-style: normal;
+  margin: 15px;
+  margin-top: 25px;
+}
+
+.tagline h1 {
+  margin: 0;
+  font-size: 32px;
+  color: var(--coffee-dark);
+}
+
+.tagline p {
+  margin: 5px 0 0 0;
+  font-size: 18px;
+  color: var(--coffee-mid);
+}
+
+/* === Navigation Menu === */
+.menu::before {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.menu ul {
+  margin: 0;
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu ul li {
+  color: var(--coffee-bg);
+}
+
+.menu ul li a {
+  display: block;
+  color: var(--coffee-bg);
+  text-align: center;
+  padding: 0.7ex 1.4ex;
+  text-decoration: none;
+}
+
+.mainmenu ul {
+  background-color: var(--coffee-dark);
+  border-radius: var(--coffee-radius);
+  overflow: hidden;
+}
+
+.mainmenu ul li {
+  float: left;
+}
+
+.mainmenu ul li.search {
+  float: right;
+}
+
+/* === Footer === */
+.footer {
+  padding-top: 2px;
+  padding-bottom: 1px;
+  border-top: 2px solid var(--coffee-dark);
+}
+
+/* === Horizontal Rules === */
+.xhr {
+  color: var(--coffee-dark);
+  height: 2px;
+}
+
+/* === Content === */
+.content {
+  margin: 5%;
+}
+
+.content h1 {
+  border-bottom: 1px solid var(--coffee-dark);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+/* === Button-like links === */
+.button {
+  background-color: var(--coffee-accent);
+  border: 2px solid var(--coffee-dark);
+  text-decoration: none;
+  border-radius: 4px;
+  padding: 0 1ex 0 1ex;
+  font-size: 90%;
+  line-height: 150%;
+  color: var(--coffee-darker);
+}
+.button:visited {
+  color: var(--coffee-darker);
+}
+
+/* === Pagination === */
+.pagination {
+  margin: 20px 0;
+  text-align: center;
+}
+.pagination a {
+  background-color: var(--coffee-accent);
+  border: 2px solid var(--coffee-dark);
+  border-radius: 4px;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: var(--coffee-darker);
+}
+
+/* === Responsive Helpers === */
+@media screen and (min-width: 600px) {
+  .mobileonly {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .desktoponly {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .wideonly {
+    display: none;
+  }
+}

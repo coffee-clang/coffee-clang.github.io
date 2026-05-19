@@ -1,42 +1,6 @@
 /* Style sheet for the Cup of Coffee - C Package Manager */
-/* Modified from sqlite.css https://sqlite.org/sqlite.css */
-* {box-sizing:border-box;}
-@media screen and (max-width: 800px){
-  body {margin: 2px;}
-}
-body {
-  margin-top: 0;
-  font-family: Verdana, sans-serif;
-  background-color: #f5e6d3;
-}
-
-/* Horizonal rules */
-.xhr {
-  color: #4a2c2a;
-  height: 2px;
-}
-
-/* Content styling */
-.content h1 {
-  border-bottom: 1px solid #4a2c2a;
-  padding-bottom: 10px;
-  margin-bottom: 20px;
-}
-
-/* Hyperlinks that look like buttons */
-.button {
-  background-color: #d4a574;
-  border: 2px solid #4a2c2a;
-  text-decoration: none;
-  border-radius: 4px;
-  padding: 0 1ex 0 1ex;
-  font-size: 90%;
-  line-height: 150%;
-  color: #2d1810;
-}
-.button:visited {
-  color: #2d1810;
-}
+/* Project-specific styles only.
+   Shared brand styles are in brand.css (imported via HTML). */
 
 /* Sidebars on the right-hand side of the screen */
 .rightsidebar {
@@ -56,74 +20,6 @@ body {
 }
 .nounderline a { text-decoration: none }
 
-a { color: #6b4438 }
-a:visited { color: #4a2c2a }
-
-.logo {
-  float: left;
-  margin: 10px;
-  width: 120px;
-  height: 120px;
-}
-.logo-container {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  background-color: #f5e6d3;
-}
-.tagline {
-  float: left;
-  text-align: left;
-  font-style: normal;
-  margin: 15px;
-  margin-top: 25px;
-}
-.tagline h1 {
-  margin: 0;
-  font-size: 32px;
-  color: #4a2c2a;
-}
-.tagline p {
-  margin: 5px 0 0 0;
-  font-size: 18px;
-  color: #6b4438;
-}
-
-/* Style common to both the main and submenu */
-.menu::before {
-  content: "";
-  clear: both;
-  display: block;
-}
-.menu ul {
-  margin: 0;
-  list-style-type: none;
-  padding: 0;
-}
-.menu ul li {
-  color: #f5e6d3;
-}
-.menu ul li a {
-  display: block;
-  color: #f5e6d3;
-  text-align: center;
-  padding: 0.7ex 1.4ex;
-  text-decoration: none;
-}
-
-/* Styling specific to the main menu */
-.mainmenu ul {
-  background-color: #4a2c2a;
-  border-radius: 8px;
-  overflow: hidden;
-}
-.mainmenu ul li {
-  float: left;
-}
-.mainmenu ul li.search {
-  float: right;
-}
-
 /* Styling specific to the submenu */
 .submenu {
   display: none;
@@ -138,20 +34,6 @@ a:visited { color: #4a2c2a }
   border-top: 2px solid #f5e6d3;
 }
 
-/* Pagination */
-.pagination {
-  margin: 20px 0;
-  text-align: center;
-}
-.pagination a {
-  background-color: #d4a574;
-  border: 2px solid #4a2c2a;
-  border-radius: 4px;
-  padding: 5px 10px;
-  text-decoration: none;
-  color: #2d1810;
-}
-
 /* Styling for the search menu */
 .searchmenu {
   width: 100%;
@@ -163,26 +45,6 @@ a:visited { color: #4a2c2a }
   border-radius: 8px;
 }
 
-/* Add the "mobileonly" class to any elements that should be visible
-** on narrow-screen mobile devices only */
-@media screen and (min-width: 600px){
-  /* Settings for wide desktop screens */
-  .mobileonly {display: none;}
-}
-/* Add the "desktoponly" class to any elements that should be visible
-** on desktops with at least 600 pixels of horizontal space. */
-@media screen and (max-width: 600px){
-  /* Settings for narrow mobile screens */
-  .desktoponly {display: none;}
-}
-/* Add the "wideonly" class to any elements that should be visible
-** on wide-screen desktops with  */
-@media screen and (max-width: 800px){
-  /* Settings for screens that are less than 800px wide */
-  .wideonly {display: none;}
-}
-
-.content    { margin: 5%; }
 .content dt { font-weight:bold; }
 .content dd { margin-bottom: 25px; margin-left:20%; }
 .content ul { padding:0px; padding-left: 15px; margin:0px; }
@@ -314,12 +176,6 @@ path { fill: none; stroke:#111111; stroke-width:1 }
 }
 .doccat ul {
   margin-top: 0.5em;
-}
-
-.footer {
-  padding-top: 2px;
-  padding-bottom: 1px;
-  border-top: 2px solid #4a2c2a;
 }
 
 th.sort:after {
