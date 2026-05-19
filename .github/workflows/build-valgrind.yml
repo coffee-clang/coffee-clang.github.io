@@ -1,0 +1,89 @@
+name: Build Valgrind (Linux)
+
+# Push a tag matching valgrind-* to trigger a build and GitHub Release.
+# Example: git tag valgrind-3.23.0 && git push origin valgrind-3.23.0
+on:
+  push:
+    tags:
+      - 'valgrind-*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Build Docker image
+        run: docker build -f docker/toolchain-builder.Dockerfile -t cup-toolchain-builder .
+
+      - name: Build package
+        run: |
+          docker run --rm \
+            -e CUP_BUILD_ENVIRONMENT=docker-toolchain \
+            -v "$PWD:/workspace" \
+            -w /workspace \
+            cup-toolchain-builder \
+            bash scripts/build-valgrind.sh \
+              "${GITHUB_REF_NAME#valgrind-}" \
+              linux-x64 \
+              linux-x64
+
+      - name: Test packaged Valgrind
+        run: |
+          docker run --rm \
+            -v "$PWD:/workspace" \
+            -w /workspace \
+            cup-toolchain-builder \
+            bash -lc '
+              set -euo pipefail
+              source dist/release.env
+
+              rm -rf dist/package-test
+              mkdir -p dist/package-test
+              tar -xJf "dist/$package_base.tar.xz" -C dist/package-test
+
+              root="dist/package-test/$package_base"
+              "$root/bin/valgrind" --version
+              "$root/bin/valgrind" --tool=memcheck --help >/tmp/cup-valgrind-help.txt
+              grep -A3 "available tools are:" /tmp/cup-valgrind-help.txt
+              grep -F "contents.mpi=true" "$root/info.txt"
+              find "$root" -type f -name "libmpiwrap-*" | grep .
+
+              printf "%s\n" \
+                "#include <stdlib.h>" \
+                "" \
+                "int main(void) {" \
+                "    int *p = malloc(sizeof(int));" \
+                "    *p = 42;" \
+                "    return 0;" \
+                "}" > /tmp/cup-valgrind-leak.c
+
+              gcc -g -O0 /tmp/cup-valgrind-leak.c -o /tmp/cup-valgrind-leak
+              "$root/bin/valgrind" --leak-check=full /tmp/cup-valgrind-leak 2>&1 | tee /tmp/cup-valgrind-output.txt
+              grep "definitely lost: 4 bytes in 1 blocks" /tmp/cup-valgrind-output.txt
+
+              rm -rf /tmp/cup-valgrind-reloc
+              cp -a "$root" /tmp/cup-valgrind-reloc
+              /tmp/cup-valgrind-reloc/bin/valgrind --leak-check=full /tmp/cup-valgrind-leak 2>&1 | tee /tmp/cup-valgrind-reloc-output.txt
+              grep "definitely lost: 4 bytes in 1 blocks" /tmp/cup-valgrind-reloc-output.txt
+            '
+
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          source dist/release.env
+
+          if gh release view "$release_tag" >/dev/null 2>&1; then
+            gh release upload "$release_tag" dist/*.tar.xz dist/*.tar.gz dist/*.zip --clobber
+          else
+            gh release create "$release_tag" dist/*.tar.xz dist/*.tar.gz dist/*.zip \
+              --title "$release_tag" \
+              --notes "Automated cup build for $release_tag"
+          fi
