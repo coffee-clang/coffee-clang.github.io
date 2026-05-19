@@ -23,7 +23,7 @@
 /* === Base Body === */
 body {
   margin-top: 0;
-  font-family: var(--coffee-font);
+  font-family: 'Inter', sans-serif;
   background-color: var(--coffee-bg);
   color: var(--coffee-text);
 }
@@ -78,6 +78,10 @@ a:visited {
   color: var(--coffee-mid);
 }
 
+h1, h2, h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+}
 /* === Navigation Menu === */
 .menu::before {
   content: "";
@@ -187,4 +191,9 @@ a:visited {
   .wideonly {
     display: none;
   }
+}
+
+/* Code */
+code, pre {
+  font-family: 'JetBrains Mono', monospace;
 }
