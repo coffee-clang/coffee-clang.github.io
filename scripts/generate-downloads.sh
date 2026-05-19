@@ -116,90 +116,6 @@ done < <(grep -v '^\s*#' "$CONFIG_FILE")
 # 3. Generate the HTML
 # =============================================================
 
-cat > "$OUTPUT_FILE" << 'HTML_HEAD'
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Downloads - Coffee</title>
-  <meta name="keywords" content="C, C programming language, cup, coffee, toolchain, downloads">
-  <meta name="description" content="Download C and C++ development tools installable by Cup">
-  <link rel="stylesheet" href="https://coffee-clang.github.io/normalize.css">
-  <link rel="stylesheet" href="https://coffee-clang.github.io/cup.css">
-  <link rel="icon" type="image/svg+xml" href="https://coffee-clang.github.io/logo.svg">
-  <style>
-    /* Download table styles */
-    .download-table { width: 100%; border-collapse: collapse; margin-bottom: 1.5em; }
-    .download-table th { background-color: #4a2c2a; color: #f5e6d3; padding: 8px; border: 1px solid #4a2c2a; text-align: left; }
-    .download-table td { border: 1px solid #4a2c2a; padding: 8px; text-align: left; vertical-align: top; }
-    .download-table tbody tr:nth-child(odd) { background-color: #e8dcc8; }
-    .download-table tbody tr:nth-child(even) { background-color: #f5e6d3; }
-    .dl-links { list-style: none; margin: 0; padding: 0; display: inline; }
-    .dl-links li { display: inline; border: none; padding: 0; }
-    .dl li + li::before { content: " | "; color: #6b4438; }
-    .version-cell { white-space: nowrap; }
-    @media screen and (max-width: 600px) {
-      .download-table, .download-table thead, .download-table tbody,
-      .download-table th, .download-table td, .download-table tr { display: block; }
-      .download-table thead { display: none; }
-      .download-table td {
-        position: relative;
-        padding-left: 40%;
-        border: none;
-        border-bottom: 1px solid #d4a574;
-        min-height: 1.5em;
-      }
-      .download-table td::before {
-        position: absolute;
-        left: 8px;
-        width: 35%;
-        padding-right: 10px;
-        font-weight: bold;
-        color: #4a2c2a;
-        content: attr(data-label);
-      }
-      .download-table tr {
-        border: 2px solid #4a2c2a;
-        margin-bottom: 0.5em;
-        border-radius: 4px;
-        display: block;
-      }
-      .dl li { display: block; margin: 0.2px 0; }
-      .dl li + li::before { content: none; }
-    }
-  </style>
-</head>
-<body>
-
-<!-- Header with logo -->
-<div class="logo-container">
-  <div class="logo">
-    <img src="logo.svg" alt="Coffee logo" width="120" height="120">
-  </div>
-  <div class="tagline">
-    <h1>Coffee</h1>
-    <p>A modern C toolchain</p>
-  </div>
-</div>
-
-<!-- Navigation -->
-<nav class="menu mainmenu">
-  <ul>
-    <li><a href="https://coffee-clang.github.io/">Home</a></li>
-    <li><a href="downloads.html" class="active">Downloads</a></li>
-    <li><a href="https://github.com/coffee-clang">GitHub</a></li>
-  </ul>
-</nav>
-
-<div class="content">
-
-  <h1>Downloads</h1>
-
-  <p>All tools installable by <strong>Cup</strong>. Click a format link to download directly, or use <code>cup install &lt;tool&gt;</code> to install via the package manager.</p>
-
-
-HTML_HEAD
-
 # --- 4. Per-category sections ---
 for cat in "${CATEGORY_ORDER[@]}"; do
   # Check if this category has any tools
@@ -298,34 +214,5 @@ for cat in "${CATEGORY_ORDER[@]}"; do
     echo "  </table>" >> "$OUTPUT_FILE"
   done
 done
-
-# --- 5. Footer ---
-cat >> "$OUTPUT_FILE" << 'HTML_FOOT'
-
-  <hr class="xhr">
-
-  <p id="help">
-    Need help?<br>
-    Run <code>cup help</code> in your terminal, or visit the <a href="https://github.com/coffee-clang/cup">Cup GitHub page</a>.
-  </p>
-  <p id="about">
-    Coffee is an open-source project.
-    &nbsp;&middot;&nbsp;
-    <a href="https://github.com/coffee-clang">GitHub</a>
-    inspired by <a href="https://github.com/rust-lang/cargo">Cargo</a>
-  </p>
-  <p id="about">
-    Cup is a <a href="https://coffee-clang.github.io/">Coffee</a> project.
-    &nbsp;&middot;&nbsp;
-    <a href="https://github.com/coffee-clang/cup">GitHub</a>
-    &nbsp;&middot;&nbsp;
-    Inspired by <a href="https://rustup.rs">Rustup</a>
-  </p>
-
-</div>
-
-</body>
-</html>
-HTML_FOOT
 
 echo "Generated: $OUTPUT_FILE"

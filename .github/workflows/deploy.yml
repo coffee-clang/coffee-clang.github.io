@@ -19,7 +19,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Generate download page
-        run: bash scripts/generate-downloads.sh
+        run: cat header.html content.html > index.html
+        run: bash scripts/generate-downloads.sh >> index.html
+        run: cat footer.html >> index.html
       - uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
