@@ -130,7 +130,7 @@ for cat in "${CATEGORY_ORDER[@]}"; do
   [[ "$has_tools" -eq 0 ]] && continue
 
   label="${CATEGORY_LABELS[$cat]:-$cat}"
-  echo "  <h2>$(html_escape "$label")</h2>" >> "$OUTPUT_FILE"
+  echo "  <h3>$(html_escape "$label")</h3>" >> "$OUTPUT_FILE"
 
   # Collect tools for this category, sorted
   declare -a tools_in_cat=()
