@@ -2,6 +2,19 @@
 /* Version 1.0 — Single source of truth for brand styles */
 
 /* === Design Tokens (CSS Custom Properties) === */
+@font-face {
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/fira-code/firacode-regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-weight: 600;
+  src: url('fonts/fira-code/firacode-600.ttf') format('truetype');
+}
+
 :root {
   --coffee-bg:       #f5e6d3;
   --coffee-dark:     #4a2c2a;
@@ -12,7 +25,7 @@
   --coffee-text:     #2d1810;
   --coffee-radius:   8px;
   --coffee-font:     Verdana, sans-serif;
-  --coffee-mono:     "Courier New", monospace;
+  --coffee-mono:     'Fira Code', monospace;
 }
 
 /* === Global Reset === */
@@ -195,5 +208,367 @@ h1, h2, h3 {
 
 /* Code */
 code, pre {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Fira Code', monospace;
+}
+/* Style sheet for the Cup of Coffee - C Package Manager */
+/* Project-specific styles only.
+   Shared brand styles are in brand.css (imported via HTML). */
+
+/* Sidebars on the right-hand side of the screen */
+.rightsidebar {
+  padding-right: 1ex;
+  margin: 1ex;
+  float: right;
+}
+
+/* Border box */
+.border2px {
+  border: 2px solid #4a2c2a;
+}
+
+.hdrfont {
+  font-weight:bold;
+  font-size:115%;
+}
+.nounderline a { text-decoration: none }
+
+/* Styling specific to the submenu */
+.submenu {
+  display: none;
+}
+.submenu ul {
+  color: #f5e6d3;
+}
+.submenu ul li {
+  float: none;
+  border-radius: 8px;
+  background-color: #6b4438;
+  border-top: 2px solid #f5e6d3;
+}
+
+/* Styling for the search menu */
+.searchmenu {
+  width: 100%;
+  text-align: right;
+  display: none;
+  float: none;
+  padding: 1ex;
+  background-color: #6b4438;
+  border-radius: 8px;
+}
+
+.content dt { font-weight:bold; }
+.content dd { margin-bottom: 25px; margin-left:20%; }
+.content ul { padding:0px; padding-left: 15px; margin:0px; }
+
+/* Things for "fancyformat" documents start here. */
+.fancy img+p {font-style:italic}
+.fancy .codeblock {
+  display: table;
+  border: 1px solid #80a796;
+  padding: 1ex;
+  background-color: #eee;
+}
+.fancy .codeblock pre {
+  display: table-cell;
+  font-size: 1em;
+}
+.fancy .codeblock i { color: darkblue; }
+.fancy h1,.fancy h2,.fancy h3,.fancy h4 {font-weight:normal;color:#4a2c2a}
+.fancy th {text-align:left;border-bottom:solid 1px #444}
+.fancy th, .fancy td {padding: 0.2em 1ex; vertical-align:top}
+table { border-collapse: collapse; width: 100%; }
+table th { background-color: #4a2c2a; color: #f5e6d3; }
+table tbody tr:nth-child(odd) { background-color: #e8dcc8; }
+table tbody tr:nth-child(even) { background-color: #f5e6d3; }
+table th, table td { border: 1px solid #4a2c2a; padding: 8px;   }
+.toct { color: #4a2c2a ! important; }
+#toc_sub a        { color: #4a2c2a; text-decoration: none }
+#toc_sub { margin-top: 1em; }
+.fancy .todo         { color: #AA3333 ; font-style : italic }
+.fancy .todo:before  { content: 'TODO:' }
+.fancy p.todo        { border: solid #AA3333 1px; padding: 1ex }
+.fancy img { display:block; }
+.fancy :link:hover, .fancy :visited:hover { background: wheat }
+.fancy_title {
+  font-size: 2em;
+  text-align: center;
+  color: #4a2c2a;
+}
+.fancy_toc {
+  margin-top: 1em;
+}
+.fancy_toc > a,
+.fancy_toc > summary {
+  margin: 1em;
+  margin-left: 0;
+  font-size: 1.5em;
+  color: #4a2c2a;
+  text-decoration: none;
+  cursor: pointer;
+}
+@media screen and (min-width: 600px){
+  /* Indentation amounts for non-mobile screens, 600 pixels or wider */
+  .fancy p,.fancy ul,.fancy ol,.fancy dl { margin: 1em 5ex }
+  .fancy li p { margin: 1em 0 }
+  .fancy blockquote { margin-left : 10ex }
+  .toct {margin-left:4ex;}
+  .fancy-toc1 {margin-left:6ex;}
+  .fancy-toc2 {margin-left:12ex;}
+  .fancy-toc3 {margin-left:18ex;}
+  .fancy-toc4 {margin-left:24ex;}
+  .fancy-toc5 {margin-left:30ex;}
+  .fancy-toc6 {margin-left:36ex;}
+  .fancy .codeblock {margin:0 10ex;}
+  .fancy ol .codeblock {margin:0 5ex;}
+  .fancy .imgcontainer {margin: 1em 5ex}
+}
+@media screen and (max-width: 600px){
+  /* Indentation amounts for narrow mobile screens */
+  .toct {margin-left:0;}
+  .fancy-toc1 {padding-left:4ex;text-indent:-2ex;}
+  .fancy-toc2 {padding-left:8ex;text-indent:-4ex;}
+  .fancy-toc3 {padding-left:12ex;text-indent:-6ex;}
+  .fancy-toc4 {padding-left:16ex;text-indent:-8ex;}
+  .fancy-toc5 {padding-left:20ex;text-indent:-10ex;}
+  .fancy-toc6 {padding-left:24ex;text-indent:-12ex;}
+  .lessindent {padding-left: 1em; margin-left: 0;}
+  .fancy .codeblock {margin:0 1ex;}
+}
+/* End of "fancyformat" specific rules. */
+
+/* <ul> elements used for multi-column lists */
+.multicol_list {padding-left:1em;margin-left:0;}
+
+.yyterm {
+  background: #fff;
+  border: 1px solid #000;
+  border-radius: 11px;
+  padding-left: 4px;
+  padding-right: 4px;
+  line-height: 125%;
+}
+.yynonterm {
+  background: #fff;
+  border: 1px solid #000;
+  padding-left: 2px;
+  padding-right: 2px;
+  line-height: 125%;
+}
+
+/* Container for an image */
+.imgcontainer img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+/* Default fill and stroke for SVG paths */
+polygon { fill: black; stroke:#111111; stroke-width:1 }
+path { fill: none; stroke:#111111; stroke-width:1 }
+
+.doccat a {
+  color: #4a2c2a ;
+  text-decoration: none;
+}
+.doccat h {
+  font-weight: bold;
+}
+.doccat h a {
+  font-size: smaller;
+  color: black;
+}
+.doccat {
+  padding-left: 2ex;
+  padding-right: 2ex;
+}
+.doccat li {
+  list-style-type: none;
+  font-size: smaller;
+  line-height: 150%; 
+}
+.doccat ul {
+  margin-top: 0.5em;
+}
+
+th.sort:after {
+  margin-left: .4em;
+  cursor: pointer;
+  text-shadow: 0 0 0 #000; /* Makes arrow darker */
+}
+th.sort.none:after {
+  content: '\2666';
+}
+th.sort.asc:after {
+  content: '\2193';
+}
+th.sort.desc:after {
+  content: '\2191'
+}
+
+div.columns {
+  padding: 0 2em 0 2em;
+  max-width: 2000px;
+}
+div.columns > ul {
+  margin: 0;
+  padding: 0 0 0 1em;
+  list-style-type: none;
+  padding: 10px;
+  margin: 0px;
+}
+div.columns > ul li:first-child {
+  margin-top:0px;
+}
+.columns li {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.content ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+.content ul li {
+  padding: 0.5em 0;
+  border-bottom: 1px solid #d4a574;
+}
+.content ul li:last-child {
+  border-bottom: none;
+}
+.content ul li a {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+/* Install instructions */
+.instructions {
+  background: #e8dcc8;
+  border: 2px solid #4a2c2a;
+  border-radius: 8px;
+  padding: 1em 1.5em;
+  margin: 1em 0;
+}
+.instructions p {
+  margin-top: 0;
+  color: #2d1810;
+}
+.copy-container {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+.cup-command {
+  background: #2d1810;
+  color: #f5e6d3;
+  padding: 0.8em 1em;
+  margin: 0;
+  border-radius: 6px 0 0 6px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.95em;
+  overflow-x: auto;
+  white-space: pre;
+  flex: 1;
+}
+.copy-button {
+  background: #4a2c2a;
+  border: none;
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.8em;
+  flex-shrink: 0;
+  transition: background-color 0.2s;
+}
+.copy-button:hover {
+  background: #6b4438;
+}
+.copy-button:active {
+  background: #2d1810;
+}
+.copy-icon img {
+  display: block;
+}
+/* Style for cup - The C toolchain installer */
+/* Project-specific styles only.
+   Shared brand styles are in brand.css (imported via HTML). */
+
+.content h2 {
+  color: #4a2c2a;
+  font-weight: normal;
+}
+
+div.copy-icon svg {
+  fill: #2d1810;
+  display: block;
+}
+
+.copy-button-text {
+  transition: opacity 0.2s ease-in-out;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  color: #4a2c2a;
+  font-size: 14px;
+  opacity: 0;
+  white-space: nowrap;
+  background: #f5e6d3;
+  padding: 2px 8px;
+  border: 1px solid #4a2c2a;
+  border-radius: 4px;
+}
+
+/* Help and footer */
+#help {
+  font-size: 16px;
+  text-align: center;
+  color: #6b4438;
+}
+
+#about {
+  font-size: 14px;
+  text-align: center;
+  color: #6b4438;
+  border-top: 2px solid #4a2c2a;
+  padding-top: 1em;
+  margin-top: 2em;
+}
+
+/* Utility classes */
+.display-none {
+  display: none;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-inline {
+  display: inline;
+}
+
+/* Responsive overrides */
+@media screen and (max-width: 600px) {
+  .logo-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .tagline {
+    text-align: center;
+    margin-top: 5px;
+  }
+  .cup-command {
+    font-size: 12px;
+    white-space: normal;
+    word-break: break-all;
+  }
+  .mainmenu ul li {
+    float: none;
+  }
+  .mainmenu ul li a {
+    text-align: left;
+  }
 }
