@@ -195,7 +195,7 @@ cat > "$OUTPUT_FILE" << 'HTML_HEAD'
 
   <h1>Downloads</h1>
 
-  <p>All tools installable by <strong>Cup</strong>. Click a format link to download directly, or use <code>cup install &lt;tool&gt;</code> /code> to install via the package manager.</p>
+  <p>All tools installable by <strong>Cup</strong>. Click a format link to download directly, or use <code>cup install &lt;tool&gt;</code> to install via the package manager.</p>
 
 
 HTML_HEAD
@@ -233,7 +233,12 @@ for cat in "${CATEGORY_ORDER[@]}"; do
     echo "  <h3><a href=\"$(html_escape "$website")\">$(html_escape "$tool")</a></h3>" >> "$OUTPUT_FILE"
     echo "  <table class=\"download-table\">" >> "$OUTPUT_FILE"
     echo "    <thead>" >> "$OUTPUT_FILE"
-    echo "      <tr>
+    echo "      <tr>" >> "$OUTPUT_FILE"
+    echo "        <th>Host → Target</th>" >> "$OUTPUT_FILE"
+    echo "        <th>Latest Version</th>" >> "$OUTPUT_FILE"
+    echo "        <th>Downloads</th>" >> "$OUTPUT_FILE"
+    echo "        <th>All Versions</th>" >> "$OUTPUT_FILE"
+    echo "      </tr>" >> "$OUTPUT_FILE"
     echo "    </thead>" >> "$OUTPUT_FILE"
     echo "    <tbody>" >> "$OUTPUT_FILE"
 
@@ -277,15 +282,15 @@ for cat in "${CATEGORY_ORDER[@]}"; do
         dl_url="$url_template"
         dl_url="${dl_url//\{version\}/$stable_version}"
         dl_url="${dl_url//\{host_platform\}/$host}"
-        dl_url="${dl_url//\{target_plaform\}/$target}"
+        dl_url="${dl_url//\{target_platform\}/$target}"
         dl_url="${dl_url//\{format\}/$fmt}"
-        echo -n "<li><a href=\"$(html_escape "$dl_url")\">$(th_escape "$fmt")</a></li>" >> "$OUTPUT_FILE"
+        echo -n "<li><a href=\"$(html_escape "$dl_url")\">$(html_escape "$fmt")</a></li>" >> "$OUTPUT_FILE"
       done
       echo "</ul></td>" >> "$OUTPUT_FILE"
 
       # All versions link
       release_url="https://github.com/coffee-clang/cup/releases?q=${tool}+${host}+${target}"
-      echo "        <td data-label=\"All Versions\"><a href=\"$(html_escape "$release")\">View all releases ↗</a></td>" >> "$OUTPUT_FILE"
+      echo "        <td data-label=\"All Versions\"><a href=\"$(html_escape "$release_url")\">View all releases ↗</a></td>" >> "$OUTPUT_FILE"
       echo "      </tr>" >> "$OUTPUT_FILE"
     done
 
@@ -295,7 +300,7 @@ for cat in "${CATEGORY_ORDER[@]}"; do
 done
 
 # --- 5. Footer ---
-cat >> "$OUTPUT_FILE >> "OUTPUT_FILE" << 'HTML_FOOT'
+cat >> "$OUTPUT_FILE" << 'HTML_FOOT'
 
   <hr class="xhr">
 
