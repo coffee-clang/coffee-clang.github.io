@@ -1,0 +1,331 @@
+/* Mdbook brand integration for */
+
+/* ================================================================
+   Override mdbook theme CSS variables with brand colors.
+   Uses !important to beat the built-in theme-specific selectors
+   (html.ayu, html.light, html.navy, html.coal, html.rust).
+   ================================================================ */
+
+html {
+  --bg:                    #f5e6d3 !important;
+  --fg:                    #2d1810 !important;
+  --sidebar-bg:            #4a2c2a !important;
+  --sidebar-fg:            #f5e6d3 !important;
+  --sidebar-non-existant:  #8b6f6a !important;
+  --sidebar-active:        #d4a574 !important;
+  --sidebar-spacer:        #6b4438 !important;
+  --scrollbar:             #6b4438 !important;
+  --icons:                 #f5e6d3 !important;
+  --icons-hover:           #d4a574 !important;
+  --links:                 #6b4438 !important;
+  --inline-code-color:     #2d1810 !important;
+  --theme-popup-bg:        #e8dcc8 !important;
+  --theme-popup-border:    #4a2c2a !important;
+  --theme-hover:           #d4a574 !important;
+  --quote-bg:              #e8dcc8 !important;
+  --quote-border:          #d4a574 !important;
+  --table-border-color:    #4a2c2a !important;
+  --table-header-bg:       #4a2c2a !important;
+  --table-alternate-bg:    #e8dcc8 !important;
+  --searchbar-border-color: #d4a574 !important;
+  --searchbar-bg:          #f5e6d3 !important;
+  --searchbar-fg:          #2d1810 !important;
+  --searchbar-shadow-color: #d4a574 !important;
+  --searchresults-header-fg: #6b4438 !important;
+  --searchresults-border-color: #d4a574 !important;
+  --searchresults-li-bg:   #e8dcc8 !important;
+  --search-mark-bg:        #d4a574 !important;
+  --warning-border:         #d4a574 !important;
+}
+
+/* ================================================================
+   Header — logo-container + navigation from brand.css.
+   Mdbook inserts our header.html right after <body>, so reset the
+   margin that the theme applies to the first child.
+   ================================================================ */
+
+.logo-container {
+  margin-bottom: 0;
+}
+
+/* Navigation inherits brand.css .menu/.mainmenu styles,
+   but needs to sit above the mdbook sidebar. */
+
+.menu.mainmenu {
+  position: relative;
+  z-index: 10;
+}
+
+/* Tighten gaps in the navigation for the docs context */
+.mainmenu ul li a {
+  padding: 0.5ex 1.2ex;
+}
+
+/* ================================================================
+   Content area
+   ================================================================ */
+
+/* The page content wrapper — remove extra top padding since the header
+   already provides it */
+.page-wrapper {
+  padding-top: 0;
+}
+
+/* Override mdbook content padding to match brand spacing */
+.content {
+  padding: 1.5em 2em;
+}
+
+.content main {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Headings in content use mdbook's native styles but inherit
+   the brand's font family and color via the CSS cascade.
+   brand.css already styles h1/h2/h3 with Plus Jakarta Sans. */
+
+/* Make sure inline code and code blocks use Fira Code */
+code, pre, .program {
+  font-family: 'Fira Code', monospace !important;
+}
+
+/* ================================================================
+   Tables — match brand.css table styles
+   ================================================================ */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table th {
+  background-color: #4a2c2a;
+  color: #f5e6d3;
+}
+
+table tbody tr:nth-child(odd) {
+  background-color: #e8dcc8;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #f5e6d3;
+}
+
+table th, table td {
+  border: 1px solid #4a2c2a;
+  padding: 8px;
+}
+
+/* ================================================================
+   Links — use brand colors
+   ================================================================ */
+
+.content a {
+  color: #6b4438;
+}
+
+.content a:visited {
+  color: #4a2c2a;
+}
+
+.content a:hover {
+  color: #2d1810;
+}
+
+/* ================================================================
+   Sidebar — dark brown background for navigation panel
+   ================================================================ */
+
+.sidebar-scrollbox {
+  padding: 0.5em 0;
+}
+
+/* Chapter items */
+.chapter-item a,
+.chapter-item button {
+  color: #f5e6d3;
+}
+
+.chapter-item a:hover {
+  color: #d4a574;
+}
+
+/* Active chapter */
+.chapter-item a:active,
+.chapter-item a.active {
+  color: #d4a574;
+}
+
+/* Section headers in sidebar */
+.sidebar-scrollbox .section-header {
+  color: #d4a574;
+  font-weight: 600;
+  padding: 0.5em 1em;
+}
+
+/* Spacer between sections */
+.sidebar-scrollbox .section-spacer {
+  background-color: #6b4438;
+  height: 1px;
+  margin: 0.5em 1em;
+}
+
+/* ================================================================
+   Prev / Next navigation buttons
+   ================================================================ */
+
+.nav-chapters {
+  color: #4a2c2a;
+  font-size: 2em;
+}
+
+.nav-chapters:hover {
+  color: #d4a574;
+}
+
+/* ================================================================
+   Menu bar (top toolbar with theme picker, search, etc.)
+   ================================================================ */
+
+.menu-bar {
+  background-color: #4a2c2a;
+  color: #f5e6d3;
+  border-bottom: 2px solid #2d1810;
+}
+
+.menu-bar .menu-title {
+  color: #f5e6d3;
+}
+
+.menu-bar .menu-bar-item a,
+.menu-bar .menu-bar-item button {
+  color: #f5e6d3;
+}
+
+.menu-bar .menu-bar-item a:hover,
+.menu-bar .menu-bar-item button:hover {
+  color: #d4a574;
+}
+
+/* ================================================================
+   Search
+   ================================================================ */
+
+#searchbar {
+  border: 1px solid #d4a574;
+  background-color: #f5e6d3;
+  color: #2d1810;
+}
+
+.searchresults-header {
+  color: #6b4438;
+}
+
+/* ================================================================
+   Theme popup
+   ================================================================ */
+
+.theme-popup {
+  background-color: #e8dcc8;
+  border: 1px solid #4a2c2a;
+  border-radius: 8px;
+}
+
+.theme-popup .theme {
+  color: #2d1810;
+}
+
+.theme-popup .theme:hover {
+  background-color: #d4a574;
+}
+
+/* ================================================================
+   Footer
+   ================================================================ */
+
+.coffee-footer {
+  clear: both;
+  margin-top: 2em;
+  padding-top: 1em;
+  text-align: center;
+}
+
+.coffee-footer p {
+  margin: 0.5em 0;
+}
+
+#help {
+  font-size: 16px;
+  color: #6b4438;
+}
+
+#about {
+  font-size: 14px;
+  color: #6b4438;
+}
+
+.xhr {
+  border: none;
+  border-top: 2px solid #4a2c2a;
+  margin: 1em auto;
+  max-width: 80%;
+}
+
+/* ================================================================
+   Logo in header — smaller for docs context (brand.css sets 120x120)
+   ================================================================ */
+
+.logo-container .logo img {
+  width: 80px;
+  height: 80px;
+}
+
+/* ================================================================
+   Code blocks
+   ================================================================ */
+
+pre {
+  background-color: #2d1810;
+  color: #f5e6d3;
+  border-radius: 6px;
+  padding: 1em;
+  overflow-x: auto;
+}
+
+pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+}
+
+/* ================================================================
+   Responsive adjustments
+   ================================================================ */
+
+@media screen and (max-width: 600px) {
+  .logo-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .logo-container .logo img {
+    width: 60px;
+    height: 60px;
+  }
+  .tagline {
+    text-align: center;
+    margin-top: 5px;
+  }
+  .tagline h1 {
+    font-size: 24px;
+  }
+  .tagline p {
+    font-size: 14px;
+  }
+  .mainmenu ul li {
+    float: none;
+  }
+  .mainmenu ul li a {
+    text-align: left;
+  }
+}
