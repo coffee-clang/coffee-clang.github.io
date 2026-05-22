@@ -457,7 +457,7 @@ div.columns > ul li:first-child {
   align-items: stretch;
   gap: 0;
 }
-.cup-command {
+.coc-command {
   background: #2d1810;
   color: #f5e6d3;
   padding: 0.8em 1em;
@@ -560,7 +560,7 @@ div.copy-icon svg {
     text-align: center;
     margin-top: 5px;
   }
-  .cup-command {
+  .coc-command {
     font-size: 12px;
     white-space: normal;
     word-break: break-all;
@@ -571,4 +571,29 @@ div.copy-icon svg {
   .mainmenu ul li a {
     text-align: left;
   }
+}
+/* Style sheet for the Cup of Coffee - C Package Manager */
+/* Project-specific styles only.
+   Shared brand styles are in brand.css (imported via HTML). */
+
+.coc-command {
+  background: #2d1810;
+  color: #f5e6d3;
+  padding: 0.8em 1em;
+  margin: 0;
+  border-radius: 6px 0 0 6px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.95em;
+  overflow-x: auto;
+  white-space: pre;
+  flex: 1;
+}
+
+/* Responsive overrides */
+@media screen and (max-width: 600px) {
+  .coc-command {
+    font-size: 12px;
+    white-space: normal;
+    word-break: break-all;
+}
 }

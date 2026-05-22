@@ -20,7 +20,6 @@ The **coffee-clang.github.io** repository serves two distinct subsystems:
 ├── downloads.html       # Auto-generated download tables (not committed)
 ├── index.html           # Final site (concatenated at deploy time)
 ├── brand.css            # Shared brand identity (coffee color palette)
-├── cup.css              # Project-specific styles
 ├── normalize.css        # CSS reset
 ├── mdbook.css           # mdBook layout
 ├── logo.svg             # Animated coffee cup with </> code brackets
