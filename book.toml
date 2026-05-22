@@ -1,0 +1,15 @@
+[book]
+title = "Cup of Coffee"
+authors = ["Gianluca Della Vedova"]
+language = "en"
+
+[output.html]
+no-section-label = true
+default-theme = "light"
+preferred-dark-theme = "light"
+no-search = true
+
+[output.html.playground]
+editable = false
+runnable = false
+line-numbers = false

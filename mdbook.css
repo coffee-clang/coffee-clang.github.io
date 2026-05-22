@@ -48,18 +48,7 @@ html {
   margin-bottom: 0;
 }
 
-/* Navigation inherits brand.css .menu/.mainmenu styles,
-   but needs to sit above the mdbook sidebar. */
-
-.menu.mainmenu {
-  position: relative;
-  z-index: 10;
-}
-
-/* Tighten gaps in the navigation for the docs context */
-.mainmenu ul li a {
-  padding: 0.5ex 1.2ex;
-}
+/* Navigation styles are now handled in the menu-bar section below. */
 
 /* ================================================================
    Content area
@@ -172,84 +161,36 @@ table th, table td {
 }
 
 /* ================================================================
-   Sidebar below header
-   The logo-container + mainmenu sit above the sidebar in the DOM.
-   The sidebar's default fixed top:0 makes it overlap the header.
-   ================================================================ */
-
-.sidebar {
-    top: 145px !important;
-    bottom: auto !important;
-    height: calc(100vh - 145px) !important;
-}
-
-/* ================================================================
-   Prev / Next navigation buttons
-   ================================================================ */
-
-.nav-chapters {
-  color: #4a2c2a;
-  font-size: 2em;
-}
-
-.nav-chapters:hover {
-  color: #d4a574;
-}
-
-/* ================================================================
-   Menu bar (top toolbar with theme picker, search, etc.)
+   Menu bar (top toolbar with org navigation links)
    ================================================================ */
 
 .menu-bar {
   background-color: #4a2c2a;
   color: #f5e6d3;
   border-bottom: 2px solid #2d1810;
-}
-
-.menu-bar .menu-title {
-  color: #f5e6d3;
-}
-
-.menu-bar .menu-bar-item a,
-.menu-bar .menu-bar-item button {
-  color: #f5e6d3;
-}
-
-.menu-bar .menu-bar-item a:hover,
-.menu-bar .menu-bar-item button:hover {
-  color: #d4a574;
-}
-
-/* ================================================================
-   Search
-   ================================================================ */
-
-#searchbar {
-  border: 1px solid #d4a574;
-  background-color: #f5e6d3;
-  color: #2d1810;
-}
-
-.searchresults-header {
-  color: #6b4438;
-}
-
-/* ================================================================
-   Theme popup
-   ================================================================ */
-
-.theme-popup {
-  background-color: #e8dcc8;
-  border: 1px solid #4a2c2a;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  position: relative;
+  z-index: 10;
   border-radius: 8px;
+  margin: 8px;
+  overflow: hidden;
 }
 
-.theme-popup .theme {
-  color: #2d1810;
+.menu-bar a {
+  color: #f5e6d3;
+  text-decoration: none;
+  padding: 0.7ex 1.4ex;
+  text-align: center;
+  display: block;
+  font-family: Verdana, sans-serif;
+  font-size: 16px;
 }
 
-.theme-popup .theme:hover {
-  background-color: #d4a574;
+.menu-bar a:hover {
+  color: #d4a574;
+  background-color: #6b4438;
 }
 
 /* ================================================================
@@ -334,10 +275,14 @@ pre code {
   .tagline p {
     font-size: 14px;
   }
-  .mainmenu ul li {
-    float: none;
+  .menu-bar {
+    flex-direction: column;
+    align-items: stretch;
+    border-radius: 0;
+    margin: 0;
   }
-  .mainmenu ul li a {
+  .menu-bar a {
     text-align: left;
+    padding: 0.7ex 1.4ex;
   }
 }
