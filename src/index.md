@@ -40,8 +40,3 @@
   </div>
 </div>
 
----
-
-## Components available
-
-{{ #include _downloads.html }}

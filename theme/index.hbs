@@ -11,19 +11,126 @@
   <link rel="stylesheet" href="./mdbook.css">
   <link rel="icon" type="image/svg+xml" href="./logo.svg">
 </head>
-<body>
+<body class="sidebar-visible no-js">
 
-<!-- Menu bar with org navigation -->
-<nav class="menu-bar" id="menu-bar">
-  <a href="https://coffee-clang.github.io/">Home</a>
-  <a href="https://coffee-clang.github.io/cup">Cup</a>
-  <a href="https://coffee-clang.github.io/coffee">Coffee</a>
-  <a href="https://coffee-clang.github.io/recipes/">Recipes</a>
-  <a href="https://github.com/coffee-clang">GitHub</a>
+<!-- Provide site root to javascript -->
+<script>
+  var path_to_root = "{{ path_to_root }}";
+  var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "{{ preferred_dark_theme }}" : "{{ default_theme }}";
+</script>
+
+<!-- Work around some values stored in localStorage wrapped in quotes -->
+<script>
+  try {
+    var theme = localStorage.getItem('mdbook-theme');
+    var sidebar = localStorage.getItem('mdbook-sidebar');
+    if (theme && theme.startsWith('"') && theme.endsWith('"')) {
+      localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+    }
+    if (sidebar && sidebar.startsWith('"') && sidebar.endsWith('"')) {
+      localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+    }
+  } catch (e) { }
+</script>
+
+<!-- Hide / unhide sidebar before it is displayed -->
+<input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+<script>
+  var body = document.querySelector('body');
+  var sidebar = null;
+  var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+  if (document.body.clientWidth >= 1080) {
+    try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+    sidebar = sidebar || 'visible';
+  } else {
+    sidebar = 'hidden';
+  }
+  sidebar_toggle.checked = sidebar === 'visible';
+  body.classList.remove('sidebar-visible');
+  body.classList.add("sidebar-" + sidebar);
+</script>
+
+<!-- Sidebar -->
+<nav id="sidebar" class="sidebar" aria-label="Table of contents">
+  <div class="sidebar-scrollbox">
+    {{#toc}}{{/toc}}
+  </div>
+  <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+    <div class="sidebar-resize-indicator"></div>
+  </div>
 </nav>
 
+<!-- Track and set sidebar scroll position -->
+<script>
+  var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+  sidebarScrollbox.addEventListener('click', function(e) {
+    if (e.target.tagName === 'A') {
+      sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+    }
+  }, { passive: true });
+  var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+  sessionStorage.removeItem('sidebar-scroll');
+  if (sidebarScrollTop) {
+    sidebarScrollbox.scrollTop = sidebarScrollTop;
+  } else {
+    var activeSection = document.querySelector('#sidebar .active');
+    if (activeSection) {
+      activeSection.scrollIntoView({ block: 'center' });
+    }
+  }
+</script>
+
 <div id="page-wrapper" class="page-wrapper">
-  <div class="content">
+
+<!-- Menu bar with org navigation and sidebar toggle -->
+<nav class="menu-bar" id="menu-bar">
+  <div class="menu-left">
+    <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+      <span class="hamburger-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </label>
+    {{#if search_enabled}}
+    <button id="search-toggle" class="icon-button" type="button" title="Search" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+      <span class="search-icon">&#x1F50D;</span>
+    </button>
+    {{/if}}
+  </div>
+  <div class="menu-center">
+    <a href="https://coffee-clang.github.io/">Home</a>
+    <a href="https://coffee-clang.github.io/cup">Cup</a>
+    <a href="https://coffee-clang.github.io/coffee">Coffee</a>
+    <a href="https://coffee-clang.github.io/recipes/">Recipes</a>
+    <a href="https://github.com/coffee-clang">GitHub</a>
+  </div>
+  <div class="menu-right"></div>
+</nav>
+
+{{#if search_enabled}}
+<div id="search-wrapper" class="hidden">
+  <form id="searchbar-outer" class="searchbar-outer">
+    <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+  </form>
+  <div id="searchresults-outer" class="searchresults-outer hidden">
+    <div id="searchresults-header" class="searchresults-header"></div>
+    <ul id="searchresults">
+    </ul>
+  </div>
+</div>
+{{/if}}
+
+<!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+<script>
+  document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+  document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+  Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+    link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+  });
+</script>
+  <div id="content" class="content">
     <main>
       {{{ content }}}
     </main>
@@ -35,7 +142,7 @@
     </p>
     <p id="about">
         Coffee is an open-source project inspired by <a
-                                                           href="https://github.com/rust-lang/cargo">Cargo</a>
+                                                             href="https://github.com/rust-lang/cargo">Cargo</a>
     </br>
       Cup is a <a href="https://coffee-clang.github.io/">Coffee</a> project
       inspired by <a href="https://rustup.rs">Rustup</a>
@@ -61,6 +168,12 @@
     </script>
   </div>
 </div>
+
+{{#if search_js}}
+<script src="./elasticlunr.min.js"></script>
+<script src="./mark.min.js"></script>
+<script src="./searcher.js"></script>
+{{/if}}
 
 <script src="./book.js"></script>
 </body>

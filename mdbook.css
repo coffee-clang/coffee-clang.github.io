@@ -122,31 +122,103 @@ table th, table td {
 }
 
 /* ================================================================
-   Sidebar — dark brown background for navigation panel
+   Sidebar layout — fixed left panel
    ================================================================ */
 
+/* Hidden checkbox for toggling sidebar */
+#sidebar-toggle-anchor {
+  display: none;
+}
+
+/* Sidebar element */
+#sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 300px;
+  background-color: #4a2c2a;
+  color: #f5e6d3;
+  overflow-y: auto;
+  z-index: 10;
+  transition: transform 0.3s ease;
+  border-right: 2px solid #2d1810;
+}
+
+/* Sidebar hidden — slide off-screen */
+.sidebar-hidden #sidebar {
+  transform: translateX(-300px);
+}
+
+.sidebar-hidden #sidebar .sidebar-resize-handle {
+  display: none;
+}
+
+/* Sidebar visible */
+.sidebar-visible #sidebar {
+  transform: translateX(0);
+}
+
+/* Page wrapper adjusts to sidebar visibility */
+.sidebar-visible .page-wrapper {
+  margin-left: 300px;
+}
+
+.sidebar-hidden .page-wrapper {
+  margin-left: 0;
+}
+
+/* Sidebar resize handle */
+#sidebar-resize-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -5px;
+  width: 10px;
+  cursor: col-resize;
+  z-index: 10;
+}
+
+#sidebar-resize-handle .sidebar-resize-indicator {
+  width: 2px;
+  height: 100%;
+  background-color: #6b4438;
+  margin: 0 auto;
+}
+
+/* Sidebar content */
 .sidebar-scrollbox {
   padding: 0.5em 0;
 }
 
 /* Chapter items */
-.chapter-item a,
-.chapter-item button {
-  color: #f5e6d3;
+#sidebar .chapter-item {
+  list-style: none;
 }
 
-.chapter-item a:hover {
+#sidebar .chapter-item a,
+#sidebar .chapter-item button {
+  color: #f5e6d3;
+  display: block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  font-family: Verdana, sans-serif;
+  font-size: 15px;
+}
+
+#sidebar .chapter-item a:hover {
   color: #d4a574;
+  background-color: #6b4438;
 }
 
 /* Active chapter */
-.chapter-item a:active,
-.chapter-item a.active {
+#sidebar .chapter-item a.active {
   color: #d4a574;
+  font-weight: 600;
 }
 
 /* Section headers in sidebar */
-.sidebar-scrollbox .section-header {
+#sidebar .sidebar-scrollbox .section-header {
   color: #d4a574;
   font-weight: 600;
   padding: 0.5em 1em;
@@ -157,6 +229,13 @@ table th, table td {
   background-color: #6b4438;
   height: 1px;
   margin: 0.5em 1em;
+}
+
+/* Ordered list inside sidebar — mdBook wraps chapters in <ol> */
+#sidebar ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 /* ================================================================
@@ -175,6 +254,27 @@ table th, table td {
   border-radius: 8px;
   margin: 8px;
   overflow: hidden;
+  justify-content: space-between;
+}
+
+.menu-left {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-width: 72px;
+}
+
+.menu-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.menu-right {
+  display: flex;
+  align-items: center;
+  min-width: 72px;
 }
 
 .menu-bar a {
@@ -190,6 +290,144 @@ table th, table td {
 .menu-bar a:hover {
   color: #d4a574;
   background-color: #6b4438;
+}
+
+/* Icon buttons (hamburger, search toggle) */
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f5e6d3;
+  line-height: 1;
+}
+
+.icon-button:hover {
+  color: #d4a574;
+  background-color: #6b4438;
+}
+
+/* Hamburger icon */
+.hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 18px;
+}
+
+.hamburger-icon span {
+  display: block;
+  height: 2px;
+  background-color: currentColor;
+  border-radius: 1px;
+}
+
+/* Search icon */
+.search-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* ================================================================
+   Search bar
+   ================================================================ */
+
+#search-wrapper {
+  position: relative;
+  z-index: 20;
+  margin: 8px;
+  margin-top: 0;
+}
+
+#search-wrapper.hidden {
+  display: none;
+}
+
+.searchbar-outer {
+  display: flex;
+}
+
+#searchbar {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 16px;
+  border: 2px solid #d4a574;
+  border-radius: 8px;
+  background-color: #f5e6d3;
+  color: #2d1810;
+  font-family: Verdana, sans-serif;
+  outline: none;
+}
+
+#searchbar:focus {
+  border-color: #6b4438;
+  box-shadow: 0 0 0 2px rgba(107, 68, 56, 0.2);
+}
+
+.searchresults-outer {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #e8dcc8;
+  border: 2px solid #d4a574;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.searchresults-outer.hidden {
+  display: none;
+}
+
+.searchresults-header {
+  padding: 8px 14px;
+  font-size: 14px;
+  color: #6b4438;
+  border-bottom: 1px solid #d4a574;
+}
+
+#searchresults {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#searchresults li {
+  padding: 8px 14px;
+  border-bottom: 1px solid #d4a574;
+}
+
+#searchresults li:last-child {
+  border-bottom: none;
+}
+
+#searchresults li a {
+  color: #6b4438;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+#searchresults li a:hover {
+  color: #2d1810;
+}
+
+#searchresults li .searchresult {
+  font-size: 14px;
+  color: #2d1810;
+  margin-top: 4px;
+}
+
+#searchresults li .searchresult mark {
+  background-color: #d4a574;
+  padding: 1px 3px;
+  border-radius: 2px;
+  color: #2d1810;
 }
 
 /* ================================================================
@@ -252,6 +490,14 @@ pre code {
 }
 
 /* ================================================================
+   Utility classes
+   ================================================================ */
+
+.hidden {
+  display: none !important;
+}
+
+/* ================================================================
    Responsive adjustments
    ================================================================ */
 
@@ -280,8 +526,19 @@ pre code {
     border-radius: 0;
     margin: 0;
   }
-  .menu-bar a {
+  .menu-left {
+    justify-content: flex-start;
+    padding: 4px 0;
+    border-bottom: 1px solid #2d1810;
+  }
+  .menu-center {
+    flex-direction: column;
+  }
+  .menu-center a {
     text-align: left;
     padding: 0.7ex 1.4ex;
+  }
+  .menu-right {
+    display: none;
   }
 }
