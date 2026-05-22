@@ -13,6 +13,3 @@ no-search = true
 editable = false
 runnable = false
 line-numbers = false
-
-[output.html.code]
-code-line-numbers = false
