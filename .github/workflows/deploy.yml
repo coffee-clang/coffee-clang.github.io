@@ -18,12 +18,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Generate download page
+      - uses: peaceiris/actions-mdbook@v2
+        with:
+          mdbook-version: 'latest'
+      - name: Build site with mdbook
         run: |
           bash scripts/generate-downloads.sh
-          cat header.html content.html downloads.html footer.html > index.html
+          mdbook build
+          cp normalize.css brand.css cup.css mdbook.css book/
+          cp -r fonts/ book/fonts/
+          cp logo.svg copy-icon.svg book/
+          rm -rf book/FontAwesome/ book/fonts/ book/css/ book/highlight.js book/highlight.css book/elasticlunr.min.js book/mark.min.js book/searcher.js book/searchindex.* book/ayu-highlight.css book/tomorrow-night.css book/clipboard.min.js book/favicon.png book/favicon.svg book/_downloads.html
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: 'book'
       - id: deployment
         uses: actions/deploy-pages@v5

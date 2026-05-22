@@ -10,7 +10,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 CONFIG_FILE="$PROJECT_DIR/config/packages.cfg"
-OUTPUT_FILE="$PROJECT_DIR/downloads.html"
+OUTPUT_FILE="$PROJECT_DIR/src/_downloads.html"
 
 # --- Helper: get a value from the config file ---
 get_cfg() {
