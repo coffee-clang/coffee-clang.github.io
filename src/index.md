@@ -15,9 +15,7 @@
 <div class="instructions" id="platform-instructions-unix">
   <p>Run the following in your terminal, then follow the onscreen instructions.</p>
   <div class="copy-container">
-    <pre class="coc-command">curl -fsSL 
-https://github.com/coffee-clang/cup/releases/download/cup-bootstrap/install.sh 
-| sh</pre>
+    <pre class="coc-command">curl -fsSL https://github.com/coffee-clang/cup/releases/latest/download/install.sh | sh</pre>
     <button id="copy-button-cup" class="copy-button" type="button" title="Copy install command">
       <div class="copy-icon">
         <img src="./copy-icon.svg" alt="Copy" width="24" height="25">
@@ -32,9 +30,7 @@ https://github.com/coffee-clang/cup/releases/download/cup-bootstrap/install.sh
 <div class="instructions" id="platform-instructions-unix">
   <p>Run the following in your terminal, then follow the onscreen instructions.</p>
   <div class="copy-container">
-    <pre class="coc-command">irm 
-https://github.com/coffee-clang/cup/releases/download/cup-bootstrap/install.ps1 
-| iex</pre>
+    <pre class="coc-command">powershell -NoProfile -ExecutionPolicy Bypass -Command "irm https://github.com/coffee-clang/cup/releases/latest/download/install.ps1 | iex"</pre>
     <button id="copy-button-cup" class="copy-button" type="button" title="Copy install command">
       <div class="copy-icon">
         <img src="./copy-icon.svg" alt="Copy" width="24" height="25">
